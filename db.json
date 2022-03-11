@@ -1,0 +1,27 @@
+{	
+	"personals": [
+		{
+			"id": "1",
+			"name": "Николай",
+			"login": "nickolya89",
+			"email": "kolyaBest@mail.ru",
+			"password": "hGFs895Ts",
+			"contacts": [
+				{
+					"name": "Маша",
+					"email": "maria784@gmail.com",
+					"tel": "+79148857896",
+					"url": "https://fazarosta.com/wp-content/uploads/2018/02/12-kachestv-zhenshhin-ot-kotoryh-prosto-tak-ne-uhodjat.jpg",
+					"contactId": "18"
+				},
+				{
+					"name": "Василий Иванович",
+					"email": "yorgy@yandex.ru",
+					"tel": "+7846924568",
+					"url": "https://ic.pics.livejournal.com/morena_morana/60514872/2154779/2154779_900.jpg",
+					"contactId": "12"
+				}
+			]
+		}
+	]
+}
