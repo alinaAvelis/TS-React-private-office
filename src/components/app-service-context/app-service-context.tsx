@@ -7,6 +7,6 @@ interface AppContextInterface {
     // error: boolean
   }
 
-const AppServicecontext = React.createContext({} as AppContextInterface);
+const AppServiceContext = React.createContext({} as AppContextInterface);
 
-export default AppServicecontext;
+export default AppServiceContext;

@@ -9,17 +9,20 @@ import Contacts from './pages/contacts';
 function App() {
   return (
     <div>
-    <AppHeader />
-    <Switch>
-        <Route exact path="/">
-            <Auth/>
-        </Route>
+      <AppHeader />
+      <main>
+        <Switch>
+            <Route exact path="/">
+                <Auth/>
+            </Route>
 
-        <Route path="/contacts">
-            <Contacts/>
-        </Route>
-    </Switch>
-</div>
+            <Route path="/contacts">
+                <Contacts/>
+            </Route>
+        </Switch>
+      </main>
+    
+  </div>
   );
 }
 

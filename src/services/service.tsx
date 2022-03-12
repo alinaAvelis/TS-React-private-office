@@ -11,12 +11,12 @@ export default class Service {
         return await res.json();
     }
 
-    async getPersonals() {
-        return await this.getResourse(`/personals/`);
+     getPersonals() {
+        return  this.getResourse(`/personals/`);
     }
 
-    async getContacts(id: string) {
-        return await this.getResourse(`/personals/${id}/contacts`);
+     getContacts(id: string) {
+        return  this.getResourse(`/personals/${id}/contacts`);
     }
 }
 
