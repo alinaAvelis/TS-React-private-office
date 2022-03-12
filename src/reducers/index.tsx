@@ -12,41 +12,41 @@ type ACTIONTYPE =
   | { type: 'PERSONALS_REQUSTED';}
   | { type: 'PERSONALS_ERROR'; };
 
-const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
+const reducer = (state = initialState, action: ACTIONTYPE) => {
     switch (action.type) {
         case 'AUTH':
             return {
                 personals: state.personals,
                 auth: true,
-                loading: true,
-                error: false
+                loading: state.loading,
+                error: state.error
             };
         case 'RE-AUTH':
              return {
                 personals: state.personals,
                 auth: false,
-                loading: true,
-                error: false
+                loading: state.loading,
+                error: state.error
             };
         case 'PERSONALS_LOADED':
             return {
                 personals: action.payload,
-                auth: true,
+                auth: state.auth,
                 loading: false,
-                error: false
+                error: state.error
             };
         case 'PERSONALS_REQUSTED':
             return {
                 personals: state.personals,
-                auth: true,
-                loading: true,
-                error: false
+                auth: state.auth,
+                loading: state.loading,
+                error: state.error
             };
         case 'PERSONALS_ERROR':
             return {
                 personals: state.personals,
-                auth: true,
-                loading: true,
+                auth: state.auth,
+                loading: state.loading,
                 error: true
             };
         default: 
