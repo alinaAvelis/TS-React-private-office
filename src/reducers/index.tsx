@@ -3,6 +3,7 @@ const initialState = {
     id: '',
     name: '',
     contacts: [],
+    filtresContacts: [],
     auth: 'false',
     loading: true,
     error: false,
@@ -18,6 +19,8 @@ type ACTIONTYPE =
   | { type: 'SET_ID'; payload: Array<string> }
   | { type: 'SET_NAME'; payload: Array<string> }
   | { type: 'CONTACTS_LOADED'; payload: Array<string>}
+  | { type: 'SET_TERM'; payload: string}
+  | { type: 'SET_FILTRED_CONTACTS'; payload: Array<string>}
 
 
 const reducer = (state = initialState, action: ACTIONTYPE) => {
@@ -28,6 +31,7 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 id: state.id,
                 name:  state.name,
                 contacts: state.contacts,
+                filtresContacts: state.filtresContacts,
                 auth: true,
                 loading: state.loading,
                 error: state.error,
@@ -39,6 +43,7 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 id: state.id,
                 name:  state.name,
                 contacts: state.contacts,
+                filtresContacts: state.filtresContacts,
                 auth: false,
                 loading: state.loading,
                 error: state.error,
@@ -50,6 +55,7 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 id: state.id,
                 name:  state.name,
                 contacts: state.contacts,
+                filtresContacts: state.filtresContacts,
                 auth: state.auth,
                 loading: false,
                 error: state.error,
@@ -61,6 +67,7 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 id: state.id,
                 name:  state.name,
                 contacts: state.contacts,
+                filtresContacts: state.filtresContacts,
                 auth: state.auth,
                 loading: state.loading,
                 error: state.error,
@@ -72,6 +79,7 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 id: state.id,
                 name:  state.name,
                 contacts: state.contacts,
+                filtresContacts: state.filtresContacts,
                 auth: state.auth,
                 loading: state.loading,
                 error: true,
@@ -83,6 +91,7 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 id: action.payload,
                 name:  state.name,
                 contacts: state.contacts,
+                filtresContacts: state.filtresContacts,
                 auth: state.auth,
                 loading: state.loading,
                 error: state.error,
@@ -94,6 +103,7 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 id: state.id,
                 name:  action.payload,
                 contacts: state.contacts,
+                filtresContacts: state.filtresContacts,
                 auth: state.auth,
                 loading: state.loading,
                  error: state.error,
@@ -105,8 +115,33 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 id: state.id,
                 name:  state.name,
                 contacts: action.payload,
+                filtresContacts: state.filtresContacts,
                 auth: state.auth,
                 loading: false,
+                error: state.error,
+                term: state.term
+            };
+        case 'SET_TERM':
+            return {
+                personals: state.personals,
+                id: state.id,
+                name:  state.name,
+                contacts: state.contacts,
+                filtresContacts: state.filtresContacts,
+                auth: state.auth,
+                loading: false,
+                error: state.error,
+                term: action.payload
+            };
+        case 'SET_FILTRED_CONTACTS':
+            return {
+                personals: state.personals,
+                id: state.id,
+                name:  state.name,
+                contacts: state.contacts,
+                filtresContacts: action.payload,
+                auth: state.auth,
+                loading: state.loading,
                 error: state.error,
                 term: state.term
             };

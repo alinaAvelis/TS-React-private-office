@@ -16,7 +16,7 @@ type AddContactFormProps = {
   };
 
 const AddContactForm = ({contacts, contactsLoaded, addContactForm, setAddForm} : AddContactFormProps) => {
-    const [formClass, setFormClass] = useState('hide');
+    const [formClass, setFormClass] = useState('visually-hidden');
     const [photo, setPhoto] = useState('');
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -26,7 +26,7 @@ const AddContactForm = ({contacts, contactsLoaded, addContactForm, setAddForm} :
         if(addContactForm) {
             setFormClass('');
         }else{
-            setFormClass('hide');
+            setFormClass('visually-hidden');
         }
     }, [addContactForm]);
 
@@ -47,7 +47,7 @@ const AddContactForm = ({contacts, contactsLoaded, addContactForm, setAddForm} :
     }
 
     const onClickHundler = () => {
-        setAddForm(false)
+        setAddForm(false);
     }
 
     const handleSubmit = () => {
@@ -73,7 +73,7 @@ const AddContactForm = ({contacts, contactsLoaded, addContactForm, setAddForm} :
         setTel("");
         setName("");
         setPhoto("");
-
+        setAddForm(false);
     }
 
 

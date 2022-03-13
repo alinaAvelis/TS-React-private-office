@@ -12,7 +12,7 @@ import Button from '../button/button';
 import AddContactForm from '../addContactForm/addContactForm';
 
 
-const ContactList = ({personalsError, personalsRequested, contactsLoaded, contacts, id, error, loading}) => {
+const ContactList = ({personalsError, personalsRequested, contactsLoaded, contacts, id, error, loading, term, filtresContacts}) => {
   const [addform, setAddForm] = useState(false);
   const appContext = useContext(AppServiceContext);
 
@@ -33,14 +33,11 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
               contactsLoaded(item.contacts);
               break;
             }
-          }
-          
-          
+          }         
         })
         .catch(() => {
           personalsError()
         });
-
   }, []);
 
   const onClickHundler = () => {
@@ -78,7 +75,7 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
 
 
            <ul className='contact__list  list_list_style_type_none'>
-              { contacts.map(item => {
+              { filtresContacts.map(item => {
                     return <li key={item.contactId}>
                     <ContactItem 
                       idItem ={item.contactId}
@@ -100,7 +97,9 @@ ContactList.propTypes = {
   contactsLoaded: PropTypes.func,
   contacts: PropTypes.array,
   auth: PropTypes.bool,
-  error: PropTypes.bool
+  error: PropTypes.bool,
+  term: PropTypes.string,
+  filtresContacts: PropTypes.array
 };
 
 
@@ -109,7 +108,9 @@ const mapStateToProps = (state) => {
       id: state.id,
       contacts: state.contacts,
       loading: state.loading,
-      error: state.error
+      error: state.error,
+      term: state.term,
+      filtresContacts: state.filtresContacts
     }
   }
   

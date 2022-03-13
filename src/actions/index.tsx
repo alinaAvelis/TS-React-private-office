@@ -51,6 +51,21 @@ const contactsLoaded = (newData: Array<string>) => {
     };
 };
 
+const setTerm = (term: string) => {
+    return {
+        type: 'SET_TERM',
+        payload: term
+    };
+};
+
+
+const setFiltredContacts = (filtred: string) => {
+    return {
+        type: 'SET_FILTRED_CONTACTS',
+        payload: filtred
+    };
+};
+
 export {
     authorithation,
     reAuthorithation,
@@ -59,5 +74,7 @@ export {
     personalsError,
     setId,
     setName,
-    contactsLoaded
+    contactsLoaded,
+    setTerm,
+    setFiltredContacts
 };

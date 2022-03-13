@@ -1,7 +1,6 @@
 import React from 'react';
 import { Input, Space } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-
+import { EyeInvisibleOutlined, EyeTwoTone} from '@ant-design/icons';
 
 type InputProps = {
     type: string;
@@ -36,8 +35,6 @@ const InputComponent = ({type, name, inputId, inputValue, onChangeHandler, place
             </label>
         ) 
     }
-
-
 
     return (
         <label>

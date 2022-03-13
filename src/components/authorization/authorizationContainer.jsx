@@ -25,6 +25,11 @@ const AuthorizationFormContainer = ({authorithation, personalsLoaded, personalsE
         appContext.getPersonals()
         .then(res => {
           personalsLoaded(res);
+          if(res) {
+            res.forEach(item => {
+              console.log(`Е-mail ${item.email}, Пароль ${item.password}`)
+            })
+          }
         })
         .catch(() => {
           personalsError()
