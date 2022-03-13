@@ -16,6 +16,7 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
   const appContext = useContext(AppServiceContext);
 
   useEffect(() => {
+    
     personalsRequested();
         appContext.getContacts()
         .then(res => {
@@ -38,6 +39,7 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
         .catch(() => {
           personalsError()
         });
+
   }, []);
 
   const onClickHundler = () => {

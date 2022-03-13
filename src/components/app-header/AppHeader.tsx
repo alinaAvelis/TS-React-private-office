@@ -15,8 +15,14 @@ const AppHeader = ({name, auth, reAuthorithation}: AppHeaderProps) => {
     const [userName, setUserName] = useState("Безымянный пользователь")
 
     useEffect(() => {
+      console.log(name);
         if(name) {
             setUserName(name);
+            console.log(userName);
+        }
+
+        if(localStorage.getItem('userName')) {
+          setUserName(localStorage.userName);
         }
     }, [name]);
 

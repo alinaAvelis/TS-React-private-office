@@ -80,6 +80,7 @@ const AuthorizationFormContainer = ({authorithation, personalsLoaded, personalsE
           setId(elem.id);
           setName(elem.name);
           localStorage.setItem('id', elem.id);
+          localStorage.setItem('userName', elem.name);
           localStorage.authorized = "true";
           break;
         }
