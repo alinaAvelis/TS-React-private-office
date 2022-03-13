@@ -3,12 +3,12 @@ import AuthorizationFormContainer from '../components/authorization/authorizatio
 
 const Auth = () => {
     return (
-        <div> 
-            <h1>Авторизация</h1>
+        <section  className='section'> 
+            <h1 className='title'>Авторизация</h1>
             
             <AuthorizationFormContainer />
 
-        </div>
+        </section>
     )
 }
 

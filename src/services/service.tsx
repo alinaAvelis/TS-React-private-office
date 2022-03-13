@@ -15,8 +15,8 @@ export default class Service {
         return  this.getResourse(`/personals/`);
     }
 
-     getContacts(id: string) {
-        return  this.getResourse(`/personals/${id}/contacts`);
+     getContacts() {
+        return  this.getResourse(`/contacts/`);
     }
 }
 

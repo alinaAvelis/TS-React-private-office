@@ -9,6 +9,8 @@ import Service from './services/service';
 import AppServiceContext from './components/app-service-context';
 import store from './store';
 
+import './index.scss'
+
 const service = new Service();
 
 

@@ -1,0 +1,42 @@
+.auth_form {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+
+    
+}
+
+label {
+    display: block;
+    margin-top: 2rem;
+
+    & p {
+        margin-bottom: 10px;
+    }
+}
+
+input {
+    font: inherit;
+    width: 100%;
+    padding: 0.5rem;
+
+    color: #62487A;
+
+    border-radius: 10px;
+    border: 1px solid #62487A;
+    
+
+    &::placeholder {
+        color: #BCB1C7;
+    }
+}
+
+.ant-input-password {
+    position: relative;
+}
+
+.ant-input-suffix {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}

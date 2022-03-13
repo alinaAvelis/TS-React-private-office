@@ -1,16 +1,16 @@
 import React, {useState, useContext, useEffect} from 'react';
-import { Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { AuthorizationForm } from './authorizationForm'; 
 import AppServiceContext from '../app-service-context/app-service-context';
-import {authorithation, personalsLoaded, personalsRequested, personalsError} from '../../actions';
-import Spinner from '../spinner';
+import {authorithation, personalsLoaded, personalsRequested, personalsError, setId, setName} from '../../actions';
+// import Spinner from '../spinner';
 import Error from '../error/error';
+import "./authForm.scss";
 
 
-const AuthorizationFormContainer = ({authorithation, personalsLoaded, personalsError, personalsRequested, personals, auth, loading, error}) => {
+const AuthorizationFormContainer = ({authorithation, personalsLoaded, personalsError, personalsRequested, setName, personals, auth,  error, setId}) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const passwordMessage = document.getElementById('passMess');
@@ -18,12 +18,13 @@ const AuthorizationFormContainer = ({authorithation, personalsLoaded, personalsE
   
   const appContext = useContext(AppServiceContext);
 
+
   useEffect(() => {
+    
     personalsRequested();
         appContext.getPersonals()
         .then(res => {
           personalsLoaded(res);
-          console.log(personalsLoaded(res));
         })
         .catch(() => {
           personalsError()
@@ -69,30 +70,29 @@ const AuthorizationFormContainer = ({authorithation, personalsLoaded, personalsE
       }
     }
 
-    for ( let elem in personals) {
+    for ( let elem of personals) {
       authorithationBool = pass === elem.password && email === elem.email;
       showMessage(pass, elem.password, 'Введен неверный пароль. Попробуйте снова.', 'Введите пароль', passwordMessage);
       showMessage(email, elem.email, 'Введен неверный e-mail. Попробуйте снова.', 'Введите e-mail', emailMessage)
         if(authorithationBool) {
           authorithation();
+          setId(elem.id);
+          setName(elem.name);
+          localStorage.setItem('id', elem.id);
+          localStorage.setItem('authorized', true);
           break;
         }
     }
 
-  
-
   }
 
-  if(loading) {
-    return <Spinner />
-  } 
+  // if(loading) {
+  //   return <Spinner />
+  // } 
 
   if(error) {
       return <Error />
   }
-
-  if(auth === true) {
-    return <Redirect to='/contacts'/> }
     
     return (
       <AuthorizationForm 
@@ -109,9 +109,9 @@ AuthorizationFormContainer.propTypes = {
   personalsLoaded: PropTypes.func,
   personalsError: PropTypes.func,
   personalsRequested: PropTypes.func,
+  contactsLoaded: PropTypes.func,
   personals: PropTypes.array,
   auth: PropTypes.bool,
-  loading: PropTypes.bool,
   error: PropTypes.bool
 };
 
@@ -119,7 +119,6 @@ const mapStateToProps = (state) => {
   return {
     personals: state.personals,
     auth: state.auth,
-    loading: state.loading,
     error: state.error
   }
 }
@@ -129,7 +128,9 @@ const mapDispatchToProps = {
   authorithation,
   personalsLoaded,
   personalsRequested,
-  personalsError
+  personalsError,
+  setId,
+  setName
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthorizationFormContainer);

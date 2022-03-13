@@ -5,7 +5,12 @@
 			"name": "Николай",
 			"login": "nickolya89",
 			"email": "kolyaBest@mail.ru",
-			"password": "hGFs895Ts",
+			"password": "hGFs895Ts"
+		}
+	],
+	"contacts": [
+		{
+			"personalId": "1",
 			"contacts": [
 				{
 					"name": "Маша",

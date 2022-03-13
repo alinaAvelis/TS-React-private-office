@@ -1,0 +1,47 @@
+.page {
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+
+  color: #62487A;
+
+  @media (min-width:1200px) {
+    padding: 40px;
+  }
+
+  @media (min-width:1800px) {
+    padding: 0;
+  }
+}
+
+.section {
+  margin-top: 50px;
+  @media (min-width:1200px) {
+    margin-top: 100px;
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: 1.5rem;
+
+  @media (min-width:1200px) {
+    font-size: 2rem;
+  }
+}
+
+.img {
+  display: block;
+	width: 100%;
+	height:100%;
+	object-fit: cover;
+}
+
+.list_list_style_type_none {
+	margin: 0;
+	list-style-type: none;
+	padding: 0;
+}
+
+

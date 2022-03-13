@@ -30,10 +30,34 @@ const personalsError = () => {
     };
 };
 
+const setId = (idValue: string) => {
+    return {
+        type: 'SET_ID',
+        payload: idValue
+    };
+};
+
+const setName = (nameValue: string) => {
+    return {
+        type: 'SET_NAME',
+        payload: nameValue
+    };
+};
+
+const contactsLoaded = (newData: Array<string>) => {
+    return {
+        type: 'CONTACTS_LOADED',
+        payload: newData
+    };
+};
+
 export {
     authorithation,
     reAuthorithation,
     personalsLoaded,
     personalsRequested,
-    personalsError
+    personalsError,
+    setId,
+    setName,
+    contactsLoaded
 };

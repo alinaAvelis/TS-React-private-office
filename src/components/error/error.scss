@@ -1,0 +1,24 @@
+.error {
+    width: 100%;
+    height: 300px;
+    padding: 1.4rem;
+    margin-top: 50px;
+
+    background-image: url(https://r2.mt.ru/r3/photoEB6E/20636614025-0/jpg/bp.webp);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    @media (min-width:800px) {
+        background-size: cover;
+        height: 500px;
+    }
+}
+
+.error__text {
+    font-size: 2rem;
+    color: white;
+
+    @media (min-width:1200px) {
+        font-size: 5rem;
+    }
+}
