@@ -50,6 +50,7 @@ const AuthorizationFormContainer = ({authorithation, personalsLoaded, personalsE
     }
     
   }
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -79,7 +80,7 @@ const AuthorizationFormContainer = ({authorithation, personalsLoaded, personalsE
           setId(elem.id);
           setName(elem.name);
           localStorage.setItem('id', elem.id);
-          localStorage.setItem('authorized', true);
+          localStorage.authorized = "true";
           break;
         }
     }
@@ -111,7 +112,7 @@ AuthorizationFormContainer.propTypes = {
   personalsRequested: PropTypes.func,
   contactsLoaded: PropTypes.func,
   personals: PropTypes.array,
-  auth: PropTypes.bool,
+  auth: PropTypes.string,
   error: PropTypes.bool
 };
 
@@ -133,4 +134,8 @@ const mapDispatchToProps = {
   setName
 }
 
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(AuthorizationFormContainer);
+
+

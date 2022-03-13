@@ -8,6 +8,8 @@ import ContactItem from '../contact-item/ContactItem';
 import "./contactList.scss";
 import Spinner from '../spinner';
 import Error from '../error/error';
+import Button from '../button/button';
+import AddContactForm from '../addContactForm/addContactForm';
 
 
 const ContactList = ({personalsError, personalsRequested, contactsLoaded, contacts, id, error, loading}) => {
@@ -36,9 +38,12 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
         .catch(() => {
           personalsError()
         });
-  }, [])
+  }, []);
 
-    
+  const onClickHundler = () => {
+
+  }
+
   if(loading) {
     return <Spinner />
   } 
@@ -49,6 +54,14 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
 
     return (
         <>
+            <Button 
+              text="Добавить контакт" 
+              classBtn='button  button--left'
+              onClickHundler={onClickHundler} />
+
+            <AddContactForm />
+
+
            <ul className='contact__list  list_list_style_type_none'>
               { contacts.map(item => {
                     return <li key={item.contactId}>

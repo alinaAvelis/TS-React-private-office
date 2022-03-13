@@ -3,7 +3,7 @@ const initialState = {
     id: '',
     name: '',
     contacts: [],
-    auth: false,
+    auth: 'false',
     loading: true,
     error: false
 }

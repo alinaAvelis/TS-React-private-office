@@ -1,12 +1,18 @@
 import React from 'react';
+import "./button.scss";
 
 type ButtonProps = {
     text: string;
+    onClickHundler: Function;
+    classBtn: string;
   };
 
-const Button = ({text} : ButtonProps) => {
+const Button = ({text, onClickHundler, classBtn} : ButtonProps) => {
     return (
-        <button>
+        <button 
+            className={classBtn}
+            type="button"
+            onClick={() => {onClickHundler()}}>
             {text}
         </button>
     )

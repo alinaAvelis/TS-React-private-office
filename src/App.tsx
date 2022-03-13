@@ -9,7 +9,7 @@ import Contacts from './pages/contacts';
 import "./App.scss";
 
 type AppProps = {
-  auth: boolean;
+  auth: string;
 };
 
 
@@ -17,13 +17,11 @@ const App = ({auth}: AppProps) => {
   const [authBool, setAuthBool] = useState(auth);
 
   useEffect(() => {
-    console.log(authBool);
-    setAuthBool(Boolean(auth))
+    setAuthBool(auth);
     if(localStorage.getItem('authorized')) {
-     let newAuthBool = localStorage.getItem('authorized');
-     setAuthBool(Boolean(newAuthBool));
+     setAuthBool(localStorage.authorized);
     } 
-  }, [authBool])
+  }, [auth])
 
   
   
@@ -31,7 +29,7 @@ const App = ({auth}: AppProps) => {
     <div className='page'>
       
       <main>
-      {authBool 
+      {authBool === "true"
       ?<>
        <AppHeader />
        <Switch>
@@ -41,7 +39,7 @@ const App = ({auth}: AppProps) => {
         </Switch>
        </>
        
-      :<Route exact path="/">
+      :<Route path="/">
           <Auth/>
         </Route>
      }
@@ -52,7 +50,7 @@ const App = ({auth}: AppProps) => {
 }
 
 interface RootState {
-  auth: boolean;
+  auth: string;
 }
 
 const mapStateToProps = (state: RootState) => {
