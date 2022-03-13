@@ -10,6 +10,11 @@
 
     animation-name: show;
     animation-duration: 2s;
+
+    & .contact__btn_container {
+      flex-grow: 1;
+    }
+
 }
 
 .contact__img_container {
@@ -23,6 +28,7 @@
 
 .strongText {
     font-weight: 700;
+    margin-right: 10px;
 }
 
 @keyframes show {

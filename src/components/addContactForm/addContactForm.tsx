@@ -1,21 +1,34 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 
 import { SubmitButton } from '../submitButton/submitButton';
 import InputComponent from '../input/Input';
 import { generateId } from '../../utilities';
 import {contactsLoaded} from '../../actions';
+import Button from '../button/button';
+import "./addContacts.scss";
 
 type AddContactFormProps = {
     contacts: string[];
-    contactsLoaded: Function
+    contactsLoaded: Function;
+    addContactForm: boolean;
+    setAddForm: Function;
   };
 
-const AddContactForm = ({contacts, contactsLoaded} : AddContactFormProps) => {
+const AddContactForm = ({contacts, contactsLoaded, addContactForm, setAddForm} : AddContactFormProps) => {
+    const [formClass, setFormClass] = useState('hide');
     const [photo, setPhoto] = useState('');
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
+
+    useEffect(()=> {
+        if(addContactForm) {
+            setFormClass('');
+        }else{
+            setFormClass('hide');
+        }
+    }, [addContactForm]);
 
     const onChangePhotoHandler = (urlValue: string) => {
         setPhoto(urlValue);
@@ -33,7 +46,15 @@ const AddContactForm = ({contacts, contactsLoaded} : AddContactFormProps) => {
         setTel(telValue);
     }
 
+    const onClickHundler = () => {
+        setAddForm(false)
+    }
+
     const handleSubmit = () => {
+
+        if(!photo) {
+            setPhoto("https://st3.depositphotos.com/23594922/31822/v/1600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg")
+        }
         
         const newContact = {
             "name": name,
@@ -43,8 +64,10 @@ const AddContactForm = ({contacts, contactsLoaded} : AddContactFormProps) => {
             "contactId": `${generateId()}`
         }
 
-        const newContactsArray = [...contacts, newContact];
-        contactsLoaded(newContactsArray);
+        if(name || email || tel || photo) {
+            const newContactsArray = [...contacts, newContact];
+            contactsLoaded(newContactsArray);
+        }
 
         setEmail("");
         setTel("");
@@ -53,8 +76,9 @@ const AddContactForm = ({contacts, contactsLoaded} : AddContactFormProps) => {
 
     }
 
+
     return (
-       <form onSubmit={(event) => {
+       <form className={formClass} onSubmit={(event) => {
             event.preventDefault();
            handleSubmit();
            }}>
@@ -90,7 +114,14 @@ const AddContactForm = ({contacts, contactsLoaded} : AddContactFormProps) => {
                 name="tel" 
                 labelText="Номер телефона:"
                 onChangeHandler={onChangeTelHandler}/>
-            <SubmitButton value="Добавить" />
+            <div className="addContact__btns">
+                <SubmitButton value="Добавить контакт" />
+                <Button 
+                    text="Убрать форму" 
+                    classBtn='button'
+                    onClickHundler={onClickHundler} />
+            </div>
+           
        </form>
     )
 }

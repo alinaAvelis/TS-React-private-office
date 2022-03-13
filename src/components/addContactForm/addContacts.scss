@@ -1,0 +1,18 @@
+.addContact__btns {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    min-width: 480px;
+    margin: 30px auto 0;
+
+    @media (min-width: 1200px) {
+        margin-top: 50px;
+    }
+
+    & input[type=submit] {
+        margin: 0;
+        margin-right: 50px;
+    }
+
+   
+}

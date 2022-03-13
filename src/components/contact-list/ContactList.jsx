@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -13,10 +13,10 @@ import AddContactForm from '../addContactForm/addContactForm';
 
 
 const ContactList = ({personalsError, personalsRequested, contactsLoaded, contacts, id, error, loading}) => {
+  const [addform, setAddForm] = useState(false);
   const appContext = useContext(AppServiceContext);
 
   useEffect(() => {
-    
     personalsRequested();
         appContext.getContacts()
         .then(res => {
@@ -31,6 +31,7 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
           for(let item of res) {
             if(item.personalId === newId) {
               contactsLoaded(item.contacts);
+              break;
             }
           }
           
@@ -43,7 +44,17 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
   }, []);
 
   const onClickHundler = () => {
+    setAddForm(true);
+  }
 
+  const deleteContact = (id) => {
+    const newContactsArray = [...contacts];
+    const index = newContactsArray.findIndex(elem => elem.contactId === id);
+    const before = newContactsArray.slice(0, index);
+    const after = newContactsArray.slice(index + 1);
+ 
+    const newArr = [...before, ...after];
+    contactsLoaded(newArr);
   }
 
   if(loading) {
@@ -58,20 +69,24 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
         <>
             <Button 
               text="Добавить контакт" 
-              classBtn='button  button--left'
+              classBtn='button  button--right'
               onClickHundler={onClickHundler} />
 
-            <AddContactForm />
+            <AddContactForm  
+            addContactForm={addform}
+            setAddForm={setAddForm}/>
 
 
            <ul className='contact__list  list_list_style_type_none'>
               { contacts.map(item => {
                     return <li key={item.contactId}>
                     <ContactItem 
+                      idItem ={item.contactId}
                       url={item.url}
                       name={item.name}
                       email={item.email}
                       tel={item.tel}
+                      deleteContact={deleteContact}
                     />
                   </li>})}
            </ul>

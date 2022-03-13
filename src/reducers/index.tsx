@@ -5,7 +5,8 @@ const initialState = {
     contacts: [],
     auth: 'false',
     loading: true,
-    error: false
+    error: false,
+    term: ''
 }
 
 type ACTIONTYPE =
@@ -29,7 +30,8 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 contacts: state.contacts,
                 auth: true,
                 loading: state.loading,
-                error: state.error
+                error: state.error,
+                term: state.term
             };
         case 'RE-AUTH':
              return {
@@ -39,7 +41,8 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 contacts: state.contacts,
                 auth: false,
                 loading: state.loading,
-                error: state.error
+                error: state.error,
+                term: state.term
             };
         case 'PERSONALS_LOADED':
             return {
@@ -49,7 +52,8 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 contacts: state.contacts,
                 auth: state.auth,
                 loading: false,
-                error: state.error
+                error: state.error,
+                term: state.term
             };
         case 'PERSONALS_REQUSTED':
             return {
@@ -59,7 +63,8 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 contacts: state.contacts,
                 auth: state.auth,
                 loading: state.loading,
-                error: state.error
+                error: state.error,
+                term: state.term
             };
         case 'PERSONALS_ERROR':
             return {
@@ -69,7 +74,8 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 contacts: state.contacts,
                 auth: state.auth,
                 loading: state.loading,
-                error: true
+                error: true,
+                term: state.term
             };
         case 'SET_ID':
             return {
@@ -79,7 +85,8 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 contacts: state.contacts,
                 auth: state.auth,
                 loading: state.loading,
-                error: state.error
+                error: state.error,
+                term: state.term
             };
         case 'SET_NAME':
             return {
@@ -89,7 +96,8 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 contacts: state.contacts,
                 auth: state.auth,
                 loading: state.loading,
-                 error: state.error
+                 error: state.error,
+                 term: state.term
             };
         case 'CONTACTS_LOADED':
             return {
@@ -99,7 +107,8 @@ const reducer = (state = initialState, action: ACTIONTYPE) => {
                 contacts: action.payload,
                 auth: state.auth,
                 loading: false,
-                error: state.error
+                error: state.error,
+                term: state.term
             };
         default: 
             return state;
