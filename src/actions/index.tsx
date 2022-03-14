@@ -10,7 +10,7 @@ const reAuthorithation = () => {
     };
 };
 
-const personalsLoaded = (newData: Array<string>) => {
+const personalsLoaded = (newData: Array<object>) => {
     return {
         type: 'PERSONALS_LOADED',
         payload: newData
@@ -44,7 +44,7 @@ const setName = (nameValue: string) => {
     };
 };
 
-const contactsLoaded = (newData: Array<string>) => {
+const contactsLoaded = (newData: Array<object>) => {
     return {
         type: 'CONTACTS_LOADED',
         payload: newData

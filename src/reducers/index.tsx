@@ -13,14 +13,14 @@ const initialState = {
 type ACTIONTYPE =
   | { type: 'AUTH';  }
   | { type: 'RE-AUTH'; }
-  | { type: 'PERSONALS_LOADED'; payload: Array<string> }
+  | { type: 'PERSONALS_LOADED'; payload: Array<object> }
   | { type: 'PERSONALS_REQUSTED';}
   | { type: 'PERSONALS_ERROR'; }
-  | { type: 'SET_ID'; payload: Array<string> }
-  | { type: 'SET_NAME'; payload: Array<string> }
-  | { type: 'CONTACTS_LOADED'; payload: Array<string>}
+  | { type: 'SET_ID'; payload: Array<object> }
+  | { type: 'SET_NAME'; payload: Array<object> }
+  | { type: 'CONTACTS_LOADED'; payload: Array<object>}
   | { type: 'SET_TERM'; payload: string}
-  | { type: 'SET_FILTRED_CONTACTS'; payload: Array<string>}
+  | { type: 'SET_FILTRED_CONTACTS'; payload: Array<object>}
 
 
 const reducer = (state = initialState, action: ACTIONTYPE) => {

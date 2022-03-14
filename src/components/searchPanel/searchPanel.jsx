@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import InputComponent from '../input/Input';
-import {setTerm, setFiltredContacts, contactsLoaded} from '../../actions';
+import {setTerm, setFiltredContacts} from '../../actions';
 
 
-const SearchPaner = ({term, setTerm, setFiltredContacts, contactsLoaded, contacts, filtresContacts}) => {
+const SearchPaner = ({term, setTerm, setFiltredContacts, contacts}) => {
 
     const searchContact = (items, termValue) => {
         if(termValue.length === 0) {
@@ -40,7 +40,7 @@ const SearchPaner = ({term, setTerm, setFiltredContacts, contactsLoaded, contact
         <>
           <InputComponent 
                 type="search" 
-                placeholder="Поиск...	&#128269;" 
+                placeholder="Поиск по имени...	&#128269;" 
                 inputValue={term}  
                 inputId="search" 
                 name="search" 
@@ -55,17 +55,14 @@ SearchPaner.propTypes = {
     term: PropTypes.string,
     setTerm:PropTypes.func,
     setFiltredContacts: PropTypes.func,
-    contactsLoaded: PropTypes.func,
     contacts: PropTypes.array,
-    filtresContacts: PropTypes.array
 };
 
 
 const mapStateToProps = (state) => {
     return {
       term: state.term,
-      contacts: state.contacts, 
-      filtresContacts: state.filtresContacts
+      contacts: state.contacts
     }
   }
   
@@ -73,7 +70,6 @@ const mapStateToProps = (state) => {
   const mapDispatchToProps = {
     setTerm,
     setFiltredContacts,
-    contactsLoaded
   }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPaner);

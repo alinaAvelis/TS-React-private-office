@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "./contactItem.scss";
 import Button from '../button/button';
-
+import AddContactForm from "../addContactForm/addContactForm";
 type ContactItemProps = {
     url: string;
     name: string;
@@ -9,6 +9,7 @@ type ContactItemProps = {
     tel: string;
     idItem: string;
     deleteContact: Function;
+
   };
 
 const ContactItem = ({url, name, email, tel, idItem, deleteContact}: ContactItemProps) => {
@@ -36,40 +37,23 @@ const ContactItem = ({url, name, email, tel, idItem, deleteContact}: ContactItem
     if(edit) {
         return (
             <div className='contact__item'>
-            <div className="contact__img_container">
-                <img  className="img" src={url} alt="фотография контакта"/>
-            </div>
-               
-            <div className='contact__text'>
-                <p><span className='strongText'>Имя:</span>
-                    {name}
-                </p>
+            <AddContactForm 
+                addContactForm={edit} 
+                setAddForm={setEdit}
+                editOn={edit}
+                photoForEdit={url} 
+                nameForEdit={name} 
+                emailForEdit={email} 
+                telForEdit={tel}
+                editId={idItem}
 
-                <p><span className='strongText'>E-mail:</span>
-                <a className="link" href={`mailto:${email}`}>
-                    {email}
-                </a>
-                 </p>
-
-                <p><span className='strongText'>Телефон:</span> 
-                <a className="link" href={`tel:${getNewTel(tel)}`}>
-                    {tel}
-                </a>
-
-                </p>
-            </div>
+            />
 
             <p className="contact__btns_container">
                 <Button 
                     text="Удалить" 
                     classBtn='button  button--left'
                     onClickHundler={onClickDeleteHundler} 
-                />
-
-                <Button 
-                    text="Редактировать" 
-                    classBtn='button  button--left'
-                    onClickHundler={onClickEditHundler} 
                 />
             </p>
            

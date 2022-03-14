@@ -7,16 +7,11 @@ import { generateId } from '../../utilities';
 import {contactsLoaded} from '../../actions';
 import Button from '../button/button';
 import "./addContacts.scss";
+import PropTypes from 'prop-types';
 
-type AddContactFormProps = {
-    contacts: string[];
-    contactsLoaded: Function;
-    addContactForm: boolean;
-    setAddForm: Function;
-  };
-
-const AddContactForm = ({contacts, contactsLoaded, addContactForm, setAddForm} : AddContactFormProps) => {
+const AddContactForm = ({contacts, contactsLoaded, addContactForm, setAddForm, editOn, photoForEdit, nameForEdit, emailForEdit, telForEdit, editId}) => {
     const [formClass, setFormClass] = useState('visually-hidden');
+    const [submitBtnText, setSubmitBtnText] = useState('Добавить контакт');
     const [photo, setPhoto] = useState('');
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -30,25 +25,36 @@ const AddContactForm = ({contacts, contactsLoaded, addContactForm, setAddForm} :
         }
     }, [addContactForm]);
 
-    const onChangePhotoHandler = (urlValue: string) => {
+    useEffect(()=> {
+        if(editOn) {
+            setPhoto(photoForEdit);
+            setName(nameForEdit);
+            setEmail(emailForEdit);
+            setTel(telForEdit);
+            setSubmitBtnText("Внести изменения")
+        }
+    }, [editOn]);
+
+    const onChangePhotoHandler = (urlValue) => {
         setPhoto(urlValue);
     }
 
-    const onChangeNameHandler = (nameValue: string) => {
+    const onChangeNameHandler = (nameValue) => {
         setName(nameValue);
     }
 
-    const onChangeEmailHandler = (emailValue: string) => {
+    const onChangeEmailHandler = (emailValue) => {
         setEmail(emailValue);
     }
 
-    const onChangeTelHandler = (telValue: string) => {
+    const onChangeTelHandler = (telValue) => {
         setTel(telValue);
     }
 
     const onClickHundler = () => {
         setAddForm(false);
     }
+
 
     const handleSubmit = () => {
 
@@ -65,8 +71,16 @@ const AddContactForm = ({contacts, contactsLoaded, addContactForm, setAddForm} :
         }
 
         if(name || email || tel || photo) {
-            const newContactsArray = [...contacts, newContact];
-            contactsLoaded(newContactsArray);
+            const contactsArray = [...contacts];
+            if(editOn) {
+                const index = contactsArray.findIndex(elem => elem.contactId === editId);
+                console.log(index);
+                contactsArray[index] = newContact;
+                contactsLoaded([...contactsArray]);
+            } else {
+                const newContactsArray = [...contacts, newContact];
+                contactsLoaded(newContactsArray);
+            }
         }
 
         setEmail("");
@@ -115,7 +129,7 @@ const AddContactForm = ({contacts, contactsLoaded, addContactForm, setAddForm} :
                 labelText="Номер телефона:"
                 onChangeHandler={onChangeTelHandler}/>
             <div className="addContact__btns">
-                <SubmitButton value="Добавить контакт" />
+                <SubmitButton value={submitBtnText} />
                 <Button 
                     text="Убрать форму" 
                     classBtn='button'
@@ -126,11 +140,21 @@ const AddContactForm = ({contacts, contactsLoaded, addContactForm, setAddForm} :
     )
 }
 
-interface RootState {
-    contacts: string[]
-  }
+AddContactForm.propTypes = {
+    contacts: PropTypes.array,
+    contactsLoaded: PropTypes.func,
+    addContactForm: PropTypes.bool,
+    setAddForm: PropTypes.func,
+    editOn: PropTypes.bool,
+    photoForEdit: PropTypes.string,
+    nameForEdit: PropTypes.string,
+    emailForEdit: PropTypes.string,
+    telForEdit: PropTypes.string,
+    editId: PropTypes.string
+  };
 
-const mapStateToProps = (state: RootState) => {
+
+const mapStateToProps = (state) => {
     return {
       contacts: state.contacts,
     }
