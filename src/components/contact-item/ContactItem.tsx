@@ -63,27 +63,29 @@ const ContactItem = ({url, name, email, tel, idItem, deleteContact}: ContactItem
     
     return (
         <div className='contact__item'>
-            <div className="contact__img_container">
-                <img  className="img" src={url} alt="фотография контакта"/>
-            </div>
-               
-            <div className='contact__text'>
-                <p><span className='strongText'>Имя:</span>
-                    {name}
-                </p>
+            <div className="contacts__info">
+                <div className="contact__img_container">
+                    <img  className="img" src={url} alt="фотография контакта"/>
+                </div>
+                
+                <div className='contact__text'>
+                    <p><span className='strongText'>Имя:</span>
+                        {name}
+                    </p>
 
-                <p><span className='strongText'>E-mail:</span>
-                <a className="link" href={`mailto:${email}`}>
-                    {email}
-                </a>
-                 </p>
+                    <p><span className='strongText'>E-mail:</span>
+                    <a className="link" href={`mailto:${email}`}>
+                        {email}
+                    </a>
+                    </p>
 
-                <p><span className='strongText'>Телефон:</span> 
-                <a className="link" href={`tel:${getNewTel(tel)}`}>
-                    {tel}
-                </a>
+                    <p><span className='strongText'>Телефон:</span> 
+                    <a className="link" href={`tel:${getNewTel(tel)}`}>
+                        {tel}
+                    </a>
 
-                </p>
+                    </p>
+                </div>
             </div>
 
             <p className="contact__btns_container">
