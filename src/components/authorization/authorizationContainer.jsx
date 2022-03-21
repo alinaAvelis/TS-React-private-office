@@ -82,9 +82,9 @@ const AuthorizationFormContainer = ({authorithation, personalsLoaded, personalsE
       showMessage(email, elem.email, 'Введен неверный e-mail. Попробуйте снова.', 'Введите e-mail', emailMessage)
         if(authorithationBool) {
           authorithation();
-          setId(elem.id);
+          setId(String(elem.id));
           setName(elem.name);
-          localStorage.setItem('id', elem.id);
+          localStorage.setItem('id', String(elem.id));
           localStorage.setItem('userName', elem.name);
           localStorage.authorized = "true";
           break;

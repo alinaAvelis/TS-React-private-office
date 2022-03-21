@@ -10,10 +10,12 @@ import Spinner from '../spinner';
 import Error from '../error/error';
 import Button from '../button/button';
 import AddContactForm from '../addContactForm/addContactForm';
+// const axios = require('axios');
 
 
 const ContactList = ({personalsError, personalsRequested, contactsLoaded, contacts, id, error, loading, term, filtresContacts}) => {
   const [addform, setAddForm] = useState(false);
+  const [errorMess, setErrorMess] = useState('');
   const appContext = useContext(AppServiceContext);
 
   useEffect(() => {
@@ -29,7 +31,8 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
           }
 
           for(let item of res) {
-            if(item.personalId === newId) {
+            if(String(item.id) === newId) {
+              
               contactsLoaded(item.contacts);
               break;
             }
@@ -45,6 +48,7 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
   }
 
   const deleteContact = (id) => {
+    setErrorMess("");
     const newContactsArray = [...contacts];
     const index = newContactsArray.findIndex(elem => elem.contactId === id);
     const before = newContactsArray.slice(0, index);
@@ -52,6 +56,10 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
  
     const newArr = [...before, ...after];
     contactsLoaded(newArr);
+    appContext.putContacts(`${Number(localStorage.getItem('id'))}`, newArr)
+   .catch(error => {
+        setErrorMess(`Не удалось удалить элемент. Ошибка ${error}`);
+    });
   }
 
   if(loading) {
@@ -77,14 +85,15 @@ const ContactList = ({personalsError, personalsRequested, contactsLoaded, contac
            <ul className='contact__list  list_list_style_type_none'>
               { filtresContacts.map(item => {
                     return <li key={item.contactId}>
-                    <ContactItem 
-                      idItem ={item.contactId}
-                      url={item.url}
-                      name={item.name}
-                      email={item.email}
-                      tel={item.tel}
-                      deleteContact={deleteContact}
-                    />
+                      <ContactItem 
+                        idItem ={item.contactId}
+                        url={item.url}
+                        name={item.name}
+                        email={item.email}
+                        tel={item.tel}
+                        deleteContact={deleteContact}
+                        errorMess={errorMess}
+                      />
                   </li>})}
            </ul>
         </>

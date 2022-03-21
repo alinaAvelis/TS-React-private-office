@@ -1,4 +1,6 @@
 
+const axios = require('axios');
+
 export default class Service {
     _apiBase =  'http://localhost:3001';
    
@@ -11,6 +13,12 @@ export default class Service {
         return await res.json();
     }
 
+    async putData(url: string, arr: Array<object>) {
+        axios.put(`${this._apiBase}${url}`, {
+            contacts: arr
+        })
+    }
+    
      getPersonals() {
         return  this.getResourse(`/personals/`);
     }
@@ -18,5 +26,10 @@ export default class Service {
      getContacts() {
         return  this.getResourse(`/contacts/`);
     }
+
+    putContacts(urlOptions: string, newContacts: Array<object>) {
+        return  this.putData(`/contacts/${urlOptions}`, newContacts);
+    }
 }
+
 

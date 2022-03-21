@@ -9,10 +9,10 @@ type ContactItemProps = {
     tel: string;
     idItem: string;
     deleteContact: Function;
-
+    errorMess: string
   };
 
-const ContactItem = ({url, name, email, tel, idItem, deleteContact}: ContactItemProps) => {
+const ContactItem = ({url, name, email, tel, idItem, deleteContact, errorMess}: ContactItemProps) => {
     const [edit, setEdit] = useState(false);
 
     const getNewTel = (phone: string) => {
@@ -37,27 +37,29 @@ const ContactItem = ({url, name, email, tel, idItem, deleteContact}: ContactItem
     if(edit) {
         return (
             <div className='contact__item'>
-            <AddContactForm 
-                addContactForm={edit} 
-                setAddForm={setEdit}
-                editOn={edit}
-                photoForEdit={url} 
-                nameForEdit={name} 
-                emailForEdit={email} 
-                telForEdit={tel}
-                editId={idItem}
+                <p className='red'>{errorMess}</p>
 
-            />
+                <AddContactForm 
+                    addContactForm={edit} 
+                    setAddForm={setEdit}
+                    editOn={edit}
+                    photoForEdit={url} 
+                    nameForEdit={name} 
+                    emailForEdit={email} 
+                    telForEdit={tel}
+                    editId={idItem}
 
-            <p className="contact__btns_container">
-                <Button 
-                    text="Удалить" 
-                    classBtn='button  button--left'
-                    onClickHundler={onClickDeleteHundler} 
                 />
-            </p>
+
+                <p className="contact__btns_container">
+                    <Button 
+                        text="Удалить" 
+                        classBtn='button  button--left'
+                        onClickHundler={onClickDeleteHundler} 
+                    />
+                </p>
            
-        </div>
+            </div>
         )
     }
     
