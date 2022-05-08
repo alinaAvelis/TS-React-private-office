@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TS-React-private-office/static/css/main.3a1c0186.css",
-    "main.js": "/TS-React-private-office/static/js/main.7cce9ddd.js",
+    "main.css": "/TS-React-private-office/static/css/main.85c0555f.css",
+    "main.js": "/TS-React-private-office/static/js/main.018378cf.js",
     "static/js/787.28cb0dcd.chunk.js": "/TS-React-private-office/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/TS-React-private-office/index.html",
-    "main.3a1c0186.css.map": "/TS-React-private-office/static/css/main.3a1c0186.css.map",
-    "main.7cce9ddd.js.map": "/TS-React-private-office/static/js/main.7cce9ddd.js.map",
+    "main.85c0555f.css.map": "/TS-React-private-office/static/css/main.85c0555f.css.map",
+    "main.018378cf.js.map": "/TS-React-private-office/static/js/main.018378cf.js.map",
     "787.28cb0dcd.chunk.js.map": "/TS-React-private-office/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3a1c0186.css",
-    "static/js/main.7cce9ddd.js"
+    "static/css/main.85c0555f.css",
+    "static/js/main.018378cf.js"
   ]
 }
